@@ -1,0 +1,19 @@
+{
+  "itemData": {
+    "Name": "QueuePedidos",
+    "Priority": "High",
+    "SpecificContent": {
+        "Cliente": "Maria Silva",
+        "Pedido": "12345",
+        "Valor": 250.75,
+        "imagem": "https://reqres.in/img/faces/12-image.jpg"
+    },
+    "DeferDate": "2025-03-27T10:10:31.549Z",
+    "DueDate": "2025-03-27T10:10:31.549Z",
+    "RiskSlaDate": "2025-03-27T10:10:31.549Z",
+    "Reference": "Pedido12345",
+    "Progress": "string",
+    "Source": "Manual",
+    "ParentOperationId": "string"
+  }
+}
