@@ -81,12 +81,13 @@
       <AssemblyReference>UiPath.Platform</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1106,990" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1106,1271" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:QueueItem" Name="ItemQueue" />
       <Variable x:TypeArguments="x:String" Name="Cliente" />
       <Variable x:TypeArguments="x:String" Name="Pedido" />
       <Variable x:TypeArguments="x:String" Name="Valor" />
+      <Variable x:TypeArguments="x:String" Name="Imagem" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -94,7 +95,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:GetQueueItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Transaction Item" FolderPath="JuroQueNãoéMaVontade" sap:VirtualizedContainerService.HintSize="479,500" sap2010:WorkflowViewState.IdRef="GetQueueItem_1" QueueType="QueuePedidos" TransactionItem="[ItemQueue]" />
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,210" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,241" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -121,10 +122,26 @@
               <InArgument x:TypeArguments="x:String">[ItemQueue.SpecificContent("Valor").ToString]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[Imagem]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[ItemQueue.SpecificContent("imagem").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="479,117" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Cliente: &quot; + Cliente + &quot; - Pedido: &quot; + Pedido + &quot; - Valor: &quot; + Valor + &quot; - Imagem: &quot; + ItemQueue.SpecificContent(&quot;imagem&quot;).ToString]" />
-    <uasf:DownloadFileFromUrl FileName="{x:Null}" ResponseAttachment="{x:Null}" Timeout="{x:Null}" UserAgentHeader="{x:Null}" ConflictResolution="Rename" DisplayName="Download File from URL" sap:VirtualizedContainerService.HintSize="479,140" sap2010:WorkflowViewState.IdRef="DownloadFileFromUrl_1" Url="[ItemQueue.SpecificContent(&quot;imagem&quot;).ToString]" />
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="479,117" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Cliente: &quot; + Cliente + &quot; - Pedido: &quot; + Pedido + &quot; - Valor: &quot; + Valor + &quot; - Imagem: &quot; + Imagem]" />
+    <uasf:DownloadFileFromUrl ResponseAttachment="{x:Null}" Timeout="{x:Null}" UserAgentHeader="{x:Null}" ConflictResolution="Rename" DisplayName="Download File from URL" FileName="C:\Users\Leticia\Downloads\Nova pasta\isso.png" sap:VirtualizedContainerService.HintSize="479,149" sap2010:WorkflowViewState.IdRef="DownloadFileFromUrl_1" Url="[ItemQueue.SpecificContent(&quot;imagem&quot;).ToString]" />
+    <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" FolderPath="JuroQueNãoéMaVontade" sap:VirtualizedContainerService.HintSize="479,241" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_1" Status="Successful" TransactionItem="[ItemQueue]">
+      <ui:SetTransactionStatus.Analytics>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+      </ui:SetTransactionStatus.Analytics>
+      <ui:SetTransactionStatus.Output>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+      </ui:SetTransactionStatus.Output>
+    </ui:SetTransactionStatus>
   </Sequence>
 </Activity>
